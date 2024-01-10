@@ -1,11 +1,15 @@
 //create web server
-const http = require('http');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!');
-});
-
-server.listen(8080, () => {
-  console.log('Server listening on port 8080');
-});
+const requestListener = function (req, res) {
+    fs.readFile(__dirname + "/index.html")
+        .then(contents => {
+            res.setHeader("Content-Type", "text/html");
+            res.writeHead(200);
+            res.end(contents);
+        })
+        .catch(err => {
+            res.writeHead(500);
+            res.end(err);
+            return;
+        });
+};
