@@ -1,4 +1,4 @@
-//create web server
+// Create web server
 
 const requestListener = function (req, res) {
     fs.readFile(__dirname + "/index.html")
